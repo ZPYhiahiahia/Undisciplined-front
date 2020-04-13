@@ -1,5 +1,6 @@
 <template>
-  <v-app id="inspire" style="height: 100% ; width: 100% ; border: 0.1px solid #424242;">
+  <v-app id="inspire" style="height: 100% ; width: 100% ; ">
+<!--    border: 0.1px solid #424242;-->
     <systemtoolbar @drawerTaggle="drawer=!drawer"></systemtoolbar>
     <v-content style="height: 100% ; width: 100%">
 <!--      <v-container fluid fill-height grid-list-md>-->

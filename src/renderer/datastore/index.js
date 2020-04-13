@@ -23,9 +23,23 @@ db._.mixin(LodashId)
 if (!db.has('task').value()) {
   db.set('task', []).write()
   db.get('task').insert({
-    listname: '待办清单',
+    listname: '我的一天',
     listicon: 'mdi-view-dashboard',
     itemcnt: 1,
+    item: [
+    ]
+  }).write()
+  db.get('task').insert({
+    listname: '收集箱',
+    listicon: 'mdi-view-dashboard',
+    itemcnt: 2,
+    item: [
+    ]
+  }).write()
+  db.get('task').insert({
+    listname: '待办清单',
+    listicon: 'mdi-view-dashboard',
+    itemcnt: 3,
     item: [
       {
         name: '早起',
@@ -41,8 +55,9 @@ if (!db.has('task').value()) {
 if (!db.has('user').value()) {
   db.set('user', {}).write()
   db.set('user.name', '').write()
-  db.set('user.password', '').write()
   db.set('user.point', 0).write()
+  db.set('user.version', 0).write()
+  db.set('user.token', '').write()
 }
 
 if (!db.has('habit').value()) {

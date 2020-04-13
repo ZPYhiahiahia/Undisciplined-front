@@ -17,7 +17,7 @@
             <v-navigation-drawer permanent>
               <v-list-item>
                 <v-list-item-content>
-                  <v-btn @click="()=>{this.dialog.isShow=!this.dialog.isShow ; this.dialog.title='添加清单' ; this.dialog.method=this.addlist}">add list</v-btn>
+                  <v-btn style="font-weight: bold" @click="()=>{this.dialog.isShow=!this.dialog.isShow ; this.dialog.title='添加清单' ; this.dialog.method=this.addlist}">add list</v-btn>
                 </v-list-item-content>
 
               </v-list-item>
@@ -30,19 +30,48 @@
                       nav
               >
                 <v-list-item
-                        v-for="(item,i) in items"
+                        @click="choosedListId = 0"
+                        @contextmenu="contextListId=0"
+                >
+                  <v-list-item-icon>
+                      <v-icon>{{items[0].listicon}}</v-icon>
+                      <!--                    <v-icon>add</v-icon>-->
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title style="font-size: 15px; font-weight: bold;">{{items[0].listname}}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item
+                        @click="choosedListId = 1"
+                        @contextmenu="contextListId=1"
+                >
+                  <v-list-item-icon>
+                    <v-icon>{{items[1].listicon}}</v-icon>
+                    <!--                    <v-icon>add</v-icon>-->
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title style="font-size: 15px; font-weight: bold;">{{items[1].listname}}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item
+                        v-for="(item,i) in items.slice(2)"
                         :key="item.id"
                         link
                         v-contextmenu:listcontextmenu
-                        @click="choosedListId = i"
-                        @contextmenu="contextListId=i"
+                        @click="choosedListId = i+2"
+                        @contextmenu="contextListId = i+2"
                 >
                   <v-list-item-icon>
-                    <v-icon>{{ item.listicon }}</v-icon>
+                    <v-icon>{{item.listicon}}</v-icon>
+                    <!--                    <v-icon>add</v-icon>-->
                   </v-list-item-icon>
                   <v-list-item-content>
-                    <v-list-item-title>{{ item.listname }}</v-list-item-title>
+                   <v-list-item-title>{{item.listname}}</v-list-item-title>
                   </v-list-item-content>
+
+
 
                 </v-list-item>
               </v-list>
@@ -56,6 +85,8 @@
             <v-banner
               single-line
               sticky
+              link
+              v-contextmenu:deletefinished
             >
               <v-icon>{{this.items[choosedListId].listicon}}</v-icon>
               {{this.items[choosedListId].listname}}
@@ -68,20 +99,16 @@
                       tag="v-list"
               >
                 <template v-for="(task, i) in items[choosedListId].item">
-<!--                  <v-divider-->
-<!--                          v-if="i !== 0"-->
-<!--                          :key="`${i}-divider`"-->
-<!--                  ></v-divider>-->
 
                   <v-list-item :key="`${i}-${task.name}`"
-                               v-contextmenu:taskcontextmenu
-                               @contextmenu="contextItemId=i"
+                               link
+                               v-contextmenu="getcontextmenu()"
+                               @contextmenu="contextItemId = i"
                   >
-                    <v-list-item-action @click.capture="changePoint(i)">
+                    <v-list-item-action @click.capture="changePoint(i, task.isDone)">
                       <v-checkbox
                               v-model="task.isDone"
                               :color="task.isDone && 'grey' || 'primary'"
-
                       >
                         <template v-slot:label>
                           <div
@@ -132,7 +159,7 @@
                     @keydown.enter="addtask"
                     v-model="newitem.name"
             >
-              <template v-slot:append v-if="newitem.name.length">
+              <template v-slot:append v-if="checknewitem()">
                 <v-fade-transition leave-absolute>
                   <v-item-group>
                     <v-btn
@@ -166,12 +193,29 @@
     </v-contextmenu>
     <!--    todo 一键删除已完成事项/一键排序已完成事项-->
     <v-contextmenu ref="taskcontextmenu">
+      <v-contextmenu-item v-show="choosedListId !== 0 && checkmyday()"  @click="addtaskto(0)">添加至我的一天</v-contextmenu-item>
+      <v-contextmenu-item v-show="choosedListId !== 0 && !checkmyday()"  @click="deletetaskfrommyday">从我的一天中删除</v-contextmenu-item>
+      <v-divider v-show = " choosedListId !== 0"></v-divider>
       <!--      todo edititem 没有做-->
       <v-contextmenu-item @click="edititem">编辑任务</v-contextmenu-item>
       <v-divider></v-divider>
       <v-contextmenu-item style="color: red" @click="removeitem">删除任务</v-contextmenu-item>
     </v-contextmenu>
 
+    <v-contextmenu ref="collectcontextmenu">
+      <v-contextmenu-submenu title="添加至" >
+        <v-contextmenu-item @click="addtaskto(0)">{{items[0].listname}}</v-contextmenu-item>
+        <v-contextmenu-item v-for="(item,i) in items.slice(2)" @click="addtaskto(i+2)">{{item.listname}}</v-contextmenu-item>
+      </v-contextmenu-submenu>
+      <v-divider></v-divider>
+      <v-contextmenu-item @click="edititem">编辑任务</v-contextmenu-item>
+      <v-divider></v-divider>
+      <v-contextmenu-item style="color: red" @click="removeitem">删除任务</v-contextmenu-item>
+    </v-contextmenu>
+
+    <v-contextmenu ref="deletefinished">
+      <v-contextmenu-item @click="deletefinished">删除已完成</v-contextmenu-item>
+    </v-contextmenu>
     <v-dialog
             v-model="dialog.isShow"
             width="500"
@@ -186,7 +230,7 @@
 
         <v-divider></v-divider>
 
-        <v-form>
+        <v-form style="width: 90%;margin-left: 5%;margin-top: 3%" >
           <v-text-field
                   v-model="newlistname"
                   :rules="nameRules"
@@ -201,6 +245,7 @@
           <v-spacer></v-spacer>
           <v-btn
                   color="primary"
+                  style="font-size: 15px;font-weight: bold"
                   text
                   @click=dialog.method
           >
@@ -237,6 +282,7 @@
                 filled
                 full-width
                 solo rounded height="80%"
+
                 :rules="pointRules"
                 @keydown.enter="()=>{
                   if(/^\d+$/.test(tempPoint))
@@ -266,14 +312,8 @@
     name: 'Task',
     data () {
       return {
-        items: [
-          {
-            listname: '',
-            listicon: '',
-            itemcnt: '',
-            item: [{}]
-          }
-        ],
+        items: [],
+        map: [],
         curDate: new Date(+new Date() + 8 * 3600 * 1000).toISOString().substr(0, 10),
         choosedListId: 0,
         contextListId: 0,
@@ -320,15 +360,69 @@
         this.$db.set('task', this.items).write()
         this.updateItems()
       },
+      // 添加索引
+      addmap (listid, itemid) {
+        if (listid === 1) {
+          return
+        }
+        this.map.push({from: {listid: listid, itemid: itemid}, to: {listid: 0, itemid: this.items[0].item.length - 1}})
+        this.changeDone()
+        // this.map.push({from: {listid: 0, itemid: this.items[0].item.length - 1}, to: {listid: listid, itemid: itemid}})
+      },
+      // 寻找索引对应的内容，找不到返回null
+      findmap (listid, itemid) {
+        let i = 0
+        for (let item of this.map) {
+          if (item.from.listid === listid && item.from.itemid === itemid) {
+            return {listid: item.to.listid, itemid: item.to.itemid, i: i}
+          }
+          if (item.to.listid === listid && item.to.itemid === itemid) {
+            return {listid: item.from.listid, itemid: item.from.itemid, i: i}
+          }
+          i++
+        }
+        return null
+      },
+      checkmap (i, flag) {
+        let index = this.findmap(this.choosedListId, i)
+        let index2 = {listid: this.choosedListId, itemid: i}
+        if (index === null) {
+          return
+        }
+        console.log(this.choosedListId, i, index.listid, index.itemid)
+        // 0修改 1删除
+        if (flag === 0) {
+          this.items[index.listid].item[index.itemid].isDone = !this.items[this.choosedListId].item[i].isDone
+        }
+        if (flag === 1) {
+          this.items[index.listid].item.splice(index.itemid, 1)
+          this.map.splice(index.i, 1)
+          this.deletemap(index)
+          this.deletemap(index2)
+        }
+        this.changeDone()
+      },
+      deletemap (index1) {
+        for (let item of this.map) {
+          if (item.from.listid === index1.listid && item.from.itemid > index1.itemid) {
+            item.from.itemid--
+          }
+          if (item.to.listid === index1.listid && item.to.itemid > index1.itemid) {
+            item.to.itemid--
+          }
+        }
+        this.changeDone()
+      },
       addlist () {
         if (this.newlistname === '') {
           this.dialog.isShow = false
           return
         }
-        this.$db.get('task').insert({listname: this.newlistname, listicon: 'mdi-view-dashboard', item: [], itemcnt: 0}).write()
+        this.items.push({listname: this.newlistname, listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
         this.newlistname = ''
-        this.updateItems()
+        this.changeDone()
         this.dialog.isShow = false
+        this.choosedListId = this.items.length - 1
       },
       renamelist () {
         this.dialog.isShow = true
@@ -343,7 +437,17 @@
         }
       },
       removelist () {
+        // console.log(this.contextListId)
+        let i = this.items[this.contextListId].item.length
+        console.log('ii', i)
+        for (let x = 0; x < i; x++) {
+          console.log('i', x)
+          let index = this.findmap(this.contextListId, 0)
+          this.deleteitem(index)
+          this.items[this.contextListId].item.splice(0, 1)
+        }
         this.items.splice(this.contextListId, 1)
+        this.choosedListId = 0
         this.changeDone()
       },
       addtask () {
@@ -353,9 +457,70 @@
         this.changeDone()
         this.newitem.name = ''
         this.newitem.id = this.items[this.choosedListId].itemcnt
+        this.newitem.point = ''
+        // console.log('tempPoint', this.tempPoint)
+      },
+      deletetaskfrommyday () {
+        let index = this.findmap(this.choosedListId, this.contextItemId)
+        if (index === null) return
+        this.map.splice(index.i, 1)
+        this.items[index.listid].item.splice(index.itemid, 1)
+        this.deletemap(index)
+      },
+      addtaskto (id) {
+        let index = this.findmap(this.choosedListId, this.contextItemId)
+        if (index !== null) {
+          return
+        }
+        this.items[id].item.push(this.items[this.choosedListId].item[this.contextItemId])
+        if (this.choosedListId === 1) {
+          this.items[this.choosedListId].item.splice(this.contextItemId, 1)
+        }
+        if (this.choosedListId >= 2) {
+          this.addmap(this.choosedListId, this.contextItemId)
+          console.log(this.map)
+        }
+        this.changeDone(0)
       },
       removeitem () {
         this.items[this.choosedListId].item.splice(this.contextItemId, 1)
+        this.checkmap(this.contextItemId, 1)
+        this.changeDone()
+      },
+      deleteitem (index) {
+        if (index === null) {
+          return
+        }
+        this.items[index.listid].item.splice(index.itemid, 1)
+        console.log('del', index.listid, index.itemid)
+        let index2 = this.findmap(index.listid, index.itemid)
+        if (index2 === null) {
+          return
+        }
+        this.map.splice(index.i, 1)
+        this.deletemap(index)
+        this.deletemap(index2)
+      },
+      pmap () {
+        console.log('p')
+        for (let item of this.map) {
+          console.log(item.from.listid, item.from.itemid, item.to.listid, item.to.itemid)
+        }
+        console.log('map')
+      },
+      deletefinished () {
+        let l = this.items[this.choosedListId].item.length
+        for (let x = 0; x < l; x++) {
+          if (this.items[this.choosedListId].item[x].isDone === true) {
+            this.items[this.choosedListId].item.splice(x, 1)
+            let index = this.findmap(this.choosedListId, x)
+            // console.log('sss', x, index.listid, index.itemid)
+            this.deleteitem(index)
+            this.pmap()
+            x--
+            l--
+          }
+        }
         this.changeDone()
       },
       edititem () {
@@ -368,9 +533,35 @@
         this.items[this.choosedListId].item[i].isDone = !this.items[this.choosedListId].item[i].isDone
         this.changeDone()
         this.items[this.choosedListId].item[i].isDone = !this.items[this.choosedListId].item[i].isDone
+        this.checkmap(i, 0)
+      },
+      checkmyday () {
+        let index = this.findmap(this.choosedListId, this.contextItemId)
+        if (index === null) {
+          return true
+        } else {
+          return false
+        }
       },
       updateItems () {
         this.items = this.$db.read().get('task').value()
+      },
+      getcontextmenu () {
+        if (this.choosedListId === 1) {
+          // console.log(this.choosedListId)
+          return 'collectcontextmenu'
+        } else {
+          // console.log(this.choosedListId)
+          return 'taskcontextmenu'
+        }
+      },
+      checknewitem () {
+        if (this.newitem.name === null || this.newitem.name === '') {
+          this.newitem.point = ''
+          this.tempPoint = ''
+          return false
+        }
+        return true
       },
       ...mapActions({
         CHANGEPOINT: 'editPoint'
@@ -379,10 +570,10 @@
     watch: {
 
     },
-    mounted () {
+    created () {
       this.updateItems()
       this.choosedListId = 0
-      this.newitem.id = this.items[this.choosedListId].itemcnt
+      if (this.items.length > 0) { this.newitem.id = this.items[this.choosedListId].itemcnt }
     },
     computed: {
       point () {

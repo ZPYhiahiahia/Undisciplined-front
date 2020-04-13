@@ -1,11 +1,11 @@
 <template>
   <div class="fill-height">
-    <v-container style="overflow-y: auto" fluid class="fill-height"
+    <v-container style="overflow-y: auto;display:block" fluid class="fill-height"
     >
-      <v-row dense style="margin-top: 0">
-        <v-col>
-          <v-banner sticky single-line style="margin-top: 0">
-              <span style="width: 100% ; text-align: center">我的积分余额: {{point}}</span>
+      <v-row dense >
+        <v-col >
+          <v-banner sticky single-line>
+              <span style="width: 100%;font-weight: bold">我的积分余额: {{point}}</span>
           </v-banner>
         </v-col>
       </v-row>

@@ -2,57 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e69246c-ddba-4fb4-aca5-5e5cf1097fc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.electron-vue/build.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.electron-vue/build.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.electron-vue/dev-client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.electron-vue/dev-runner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.electron-vue/webpack.main.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.electron-vue/webpack.renderer.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.electron-vue/webpack.web.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Undisciplined.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/zhaop.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/icons/256x256.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/icons/icon.icns" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/icons/icon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/electron/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/web/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/index.dev.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/assets/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Settings.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Store.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Systemtoolbar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Tasks.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/datastore/dbHelper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/datastore/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/store/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/store/modules/Counter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/store/modules/habit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/store/modules/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/store/modules/store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/store/modules/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/AddDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/DeleteDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/HabitChoose.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/HabitShow.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Tasks/TasksList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/store/modules/sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Habits.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Settings.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Store.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Store.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Tasks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Tasks.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/datastore/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/datastore/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +53,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/renderer" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -98,11 +63,13 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\zhaop\Desktop\GraduationProgram\Undisciplined\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="D:\JETBRAINS\WebStorm 2019.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zhaop\Desktop\GraduationProgram\Undisciplined\src\renderer" />
+      <recent name="C:\Users\zhaop\Desktop\GraduationProgram\Undisciplined\src\renderer\datastore" />
       <recent name="C:\Users\zhaop\Desktop\GraduationProgram\Undisciplined\src\renderer\components" />
       <recent name="C:\Users\zhaop\Desktop\GraduationProgram\Undisciplined\.electron-vue" />
     </key>
@@ -174,7 +141,15 @@
       <workItem from="1585511232834" duration="38000" />
       <workItem from="1585511388449" duration="7850000" />
       <workItem from="1585550918039" duration="2324000" />
-      <workItem from="1585570967554" duration="278000" />
+      <workItem from="1585570967554" duration="928000" />
+      <workItem from="1585587995329" duration="337000" />
+      <workItem from="1585596260635" duration="1026000" />
+      <workItem from="1586177033090" duration="67000" />
+      <workItem from="1586587449269" duration="2438000" />
+      <workItem from="1586608750487" duration="3086000" />
+      <workItem from="1586715935886" duration="518000" />
+      <workItem from="1586718888855" duration="110000" />
+      <workItem from="1586765526722" duration="28320000" />
     </task>
     <servers />
   </component>
@@ -198,26 +173,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="299" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.0.1920.1040@0.0.1920.1040" timestamp="1585511268321" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586609519777">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586609519777" />
+    <state x="541" y="113" key="CommitChangelistDialog2" timestamp="1586811704941">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="541" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704941" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1584990086953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1584990086953" />
-    <state width="1899" height="277" key="GridCell.Tab.0.bottom" timestamp="1585557418834">
+    <state width="1899" height="217" key="GridCell.Tab.0.bottom" timestamp="1586811704989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585557418834" />
-    <state width="1899" height="277" key="GridCell.Tab.0.center" timestamp="1585557418834">
+    <state width="1899" height="217" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704989" />
+    <state width="1899" height="217" key="GridCell.Tab.0.center" timestamp="1586811704988">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585557418834" />
-    <state width="1899" height="277" key="GridCell.Tab.0.left" timestamp="1585557418834">
+    <state width="1899" height="217" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704988" />
+    <state width="1899" height="217" key="GridCell.Tab.0.left" timestamp="1586811704988">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585557418834" />
-    <state width="1899" height="277" key="GridCell.Tab.0.right" timestamp="1585557418834">
+    <state width="1899" height="217" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704988" />
+    <state width="1899" height="217" key="GridCell.Tab.0.right" timestamp="1586811704989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585557418834" />
+    <state width="1899" height="217" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704989" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1584884613024">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -266,10 +249,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="348" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584884613024" />
-    <state x="219" y="239" key="SettingsEditor" timestamp="1585512555473">
+    <state x="219" y="239" key="SettingsEditor" timestamp="1586177057037">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="219" y="239" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585512555473" />
+    <state x="219" y="239" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586177057037" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1584678275162">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -282,9 +265,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="636" y="119" width="647" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584677951151" />
-    <state x="642" y="361" width="672" height="678" key="search.everywhere.popup" timestamp="1585484949403">
+    <state x="642" y="361" width="672" height="678" key="search.everywhere.popup" timestamp="1586785434895">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="642" y="361" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585484949403" />
+    <state x="642" y="361" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586785434895" />
   </component>
 </project>

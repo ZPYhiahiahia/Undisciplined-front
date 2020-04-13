@@ -29,6 +29,12 @@ Vue.use(contentmenu)
 Vue.prototype.$db = db
 Vue.prototype._ = _
 
+// axios 配置
+axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.timeout = 5000
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
+
 export default new Vuetify({
   icons: {
     iconfont: 'mdi' // default - only for display purposes
