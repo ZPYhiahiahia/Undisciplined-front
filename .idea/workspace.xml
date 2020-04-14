@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e69246c-ddba-4fb4-aca5-5e5cf1097fc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/AddDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/DeleteDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/HabitChoose.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/HabitShow.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/components/Home/Tasks/TasksList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/store/modules/sync.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Habits.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Settings.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Store.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Store.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Tasks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Tasks.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/datastore/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/datastore/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/habit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/habit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/sync.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,11 +142,25 @@
       <workItem from="1586715935886" duration="518000" />
       <workItem from="1586718888855" duration="110000" />
       <workItem from="1586765526722" duration="28320000" />
+      <workItem from="1586811559484" duration="8129000" />
+      <workItem from="1586845796505" duration="3796000" />
     </task>
+    <task id="LOCAL-00001" summary="随意更新">
+      <created>1586811724549</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586811724550</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="随意更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="随意更新" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#ESLint" timestamp="1585288074317">
@@ -177,10 +183,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586609519777" />
-    <state x="541" y="113" key="CommitChangelistDialog2" timestamp="1586811704941">
+    <state x="541" y="113" key="CommitChangelistDialog2" timestamp="1586811723628">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="541" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704941" />
+    <state x="541" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586811723628" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1584990086953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -261,6 +267,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="553" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585571175432" />
+    <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586849704850">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586849704850" />
     <state x="636" y="119" width="647" height="801" key="find.popup" timestamp="1584677951151">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

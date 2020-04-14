@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="testdiv">
+<!--    <div class="testdiv">-->
 <!--      <span>{{userinfo}}</span>-->
 <!--      <span>{{dialog}}</span>-->
-      <v-btn
-        @click="sync"
-      >TEST BUTTON</v-btn>
-    </div>
+<!--      <v-btn-->
+<!--        @click="testMethod"-->
+<!--      >TEST BUTTON</v-btn>-->
+<!--    </div>-->
     <v-divider></v-divider>
     <v-card style="float: right;width: 100%">
       <v-card-title>
@@ -23,6 +23,7 @@
         >注销</span></v-btn>
       </v-card-actions>
     </v-card>
+
     <v-card style="float: right;width: 100%">
       <v-card-title>
         <span>同步</span>
@@ -34,14 +35,15 @@
       </v-card-text>
       <v-card-actions>
         <v-btn color="#1976D2"
-               @click=""
+               @click="sync"
                :loading="button.syncButton"
+               :disabled="userinfo.token === ''"
         >
           <span style="color: white">同步数据</span>
         </v-btn>
       </v-card-actions>
     </v-card>
-    <span>todo : 1. 设置皮肤 2. 是否从网络随机获取图片用于商品 3. 商品是否使用简约模式</span>
+<!--    <span>todo : 1. 设置皮肤 2. 是否从网络随机获取图片用于商品 3. 商品是否使用简约模式</span>-->
 
 
 
@@ -86,7 +88,15 @@
           <v-spacer></v-spacer>
           <v-btn
                   text
-                  @click="dialog.logindialog = !dialog.logindialog"
+                  @click=" () => {
+                    dialog.logindialog = !dialog.logindialog
+                    alert.loginIsShow = false
+                    alert.loginText = ''
+                    loginForm = {
+                      username: '',
+                      password: ''
+                    }
+                  }"
           >
             Cancel
           </v-btn>
@@ -97,10 +107,20 @@
           >
             Login
           </v-btn>
-
         </v-card-actions>
+        <v-alert v-model="alert.loginIsShow"
+                 dense
+                 text
+                 max-width="40%"
+                 type="error"
+                 style="margin: auto"
+        >
+          <span>{{alert.loginText}}</span>
+        </v-alert>
       </v-card>
     </v-dialog>
+
+
   </div>
 </template>
 
@@ -113,6 +133,10 @@
     data: () => ({
       dialog: {
         logindialog: false
+      },
+      alert: {
+        loginIsShow: false,
+        loginText: ''
       },
       button: {
         syncButton: false
@@ -128,8 +152,7 @@
     }),
     methods: {
       testMethod () {
-        this.dialog.logindialog = !this.dialog.logindialog
-        console.log('dialog open')
+        this.AUTOUPDATE()
       },
       login () {
         if (this.$refs.loginRules.validate()) {
@@ -149,8 +172,11 @@
                 username: '',
                 password: ''
               }
+            } else {
+              this.showAlert('Oops 登录错误 （可能是用户名或密码错误）')
             }
           }).catch(err => {
+            this.showAlert('Oops 网络错误！')
             console.log(err)
           })
         }
@@ -187,10 +213,8 @@
           }),
           method: 'POST'
         }).then(res => {
-          console.log(res)
           // 提交服务器观察返回值
-          // console.log(userinfo)
-
+          this.AUTOUPDATE(res.data)
           this.button.syncButton = false
         }).catch(err => {
           console.log(err)
@@ -198,10 +222,15 @@
 
         // 更新数据库 （注意version）
       },
+      showAlert (text) {
+        this.alert.loginIsShow = true
+        this.alert.loginText = text
+      },
       ...mapActions({
         CHANGEDONE: 'getUser',
         EDITTOKEN: 'editToken',
-        EDITUSER: 'editUser'
+        EDITUSER: 'editUser',
+        AUTOUPDATE: 'autoUpdate'
       })
     },
     computed: {

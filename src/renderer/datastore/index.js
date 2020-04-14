@@ -24,14 +24,14 @@ if (!db.has('task').value()) {
   db.set('task', []).write()
   db.get('task').insert({
     listname: '我的一天',
-    listicon: 'mdi-view-dashboard',
+    listicon: 'wb-sunny',
     itemcnt: 1,
     item: [
     ]
   }).write()
   db.get('task').insert({
     listname: '收集箱',
-    listicon: 'mdi-view-dashboard',
+    listicon: 'all_inbox',
     itemcnt: 2,
     item: [
     ]

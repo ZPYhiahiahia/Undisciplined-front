@@ -10,6 +10,8 @@ const mutations = {
     newgood.icon = ''
     newgood.img = 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
     newgood.buyamount = 0
+    console.log('[EDIT_STORE] ')
+    console.log(newgood)
     dbh.insert('store', newgood)
     this.store = dbh.get('store')
   },
@@ -29,15 +31,18 @@ const mutations = {
 const actions = {
   editStore ({ commit }, newhabit) {
     commit('EDIT_STORE', newhabit)
+    commit('ADD_VERSION')
   },
   getStore ({ commit }) {
     commit('GET_STORE')
   },
   removeGood ({commit}, id) {
     commit('REMOVE_GOOD', id)
+    commit('ADD_VERSION')
   },
   buyGood ({commit}, {goodid, upkey, upvalue}) {
     commit('BUY_GOOD', {goodid, upkey, upvalue})
+    commit('ADD_VERSION')
   }
 }
 

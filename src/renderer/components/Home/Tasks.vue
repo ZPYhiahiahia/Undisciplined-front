@@ -17,7 +17,11 @@
             <v-navigation-drawer permanent>
               <v-list-item>
                 <v-list-item-content>
-                  <v-btn style="font-weight: bold" @click="()=>{this.dialog.isShow=!this.dialog.isShow ; this.dialog.title='添加清单' ; this.dialog.method=this.addlist}">add list</v-btn>
+                  <v-btn
+                          block
+                          tile
+                          color="primary"
+                          style="font-weight: bold; color: white" @click="()=>{this.dialog.isShow=!this.dialog.isShow ; this.dialog.title='添加清单' ; this.dialog.method=this.addlist}">add list</v-btn>
                 </v-list-item-content>
 
               </v-list-item>
@@ -34,7 +38,7 @@
                         @contextmenu="contextListId=0"
                 >
                   <v-list-item-icon>
-                      <v-icon>{{items[0].listicon}}</v-icon>
+                      <v-icon color="#E53935">{{items[0].listicon}}</v-icon>
                       <!--                    <v-icon>add</v-icon>-->
                   </v-list-item-icon>
                   <v-list-item-content>
@@ -47,7 +51,7 @@
                         @contextmenu="contextListId=1"
                 >
                   <v-list-item-icon>
-                    <v-icon>{{items[1].listicon}}</v-icon>
+                    <v-icon color="#3949AB">{{items[1].listicon}}</v-icon>
                     <!--                    <v-icon>add</v-icon>-->
                   </v-list-item-icon>
                   <v-list-item-content>
@@ -89,7 +93,7 @@
               v-contextmenu:deletefinished
             >
               <v-icon>{{this.items[choosedListId].listicon}}</v-icon>
-              {{this.items[choosedListId].listname}}
+              <span style="font-size: 15px; font-weight: bold;">{{this.items[choosedListId].listname}}</span>
 
             </v-banner>
 
@@ -286,7 +290,7 @@
                 :rules="pointRules"
                 @keydown.enter="()=>{
                   if(/^\d+$/.test(tempPoint))
-                    newitem.point = tempPoint
+                    newitem.point = tempPoint === '' ? 0 : parseInt(tempPoint)
                    tempPoint = ''
                    isPointShow = false
                 }"
@@ -300,6 +304,7 @@
 <!--    <v-btn @click="testMethod">test button</v-btn>-->
 <!--&lt;!&ndash;    <p>{{this.$store.state.user}}</p>&ndash;&gt;-->
 <!--    <p style="color: red">{{point}}</p>-->
+<!--    <p>{{map}}</p>-->
   </div>
 
 
@@ -354,11 +359,20 @@
     },
     methods: {
       testMethod () {
-        console.log(this.testlistdata)
+        dbh.insert('task', {listname: 'testMethodMade', listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
+        this.items = dbh.get('task')
+      },
+      dbAddList () {
+        dbh.insert('task', {listname: this.newlistname, listicon: 'list', item: [], itemcnt: 0})
+        this.items = dbh.get('task')
       },
       changeDone () {
-        this.$db.set('task', this.items).write()
+        // this.$db.set('task', this.items).write()
+        dbh.set('task', this.items)
+        // console.log(this.userinfo)
         this.updateItems()
+        let value = this.userinfo.version + 1
+        this.EDITUSER({key: 'version', value})
       },
       // 添加索引
       addmap (listid, itemid) {
@@ -418,11 +432,15 @@
           this.dialog.isShow = false
           return
         }
-        this.items.push({listname: this.newlistname, listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
+        // 换一句插入语句
+        // this.items.push({listname: this.newlistname, listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
+        // console.log(this.items)
+        // // dbh.insert('task', {listname: this.newlistname, listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
+        this.dbAddList()
         this.newlistname = ''
-        this.changeDone()
         this.dialog.isShow = false
         this.choosedListId = this.items.length - 1
+        this.ADDVERSION()
       },
       renamelist () {
         this.dialog.isShow = true
@@ -457,7 +475,7 @@
         this.changeDone()
         this.newitem.name = ''
         this.newitem.id = this.items[this.choosedListId].itemcnt
-        this.newitem.point = ''
+        this.newitem.point = 0
         // console.log('tempPoint', this.tempPoint)
       },
       deletetaskfrommyday () {
@@ -544,7 +562,7 @@
         }
       },
       updateItems () {
-        this.items = this.$db.read().get('task').value()
+        this.items = dbh.get('task')
       },
       getcontextmenu () {
         if (this.choosedListId === 1) {
@@ -557,14 +575,16 @@
       },
       checknewitem () {
         if (this.newitem.name === null || this.newitem.name === '') {
-          this.newitem.point = ''
+          this.newitem.point = 0
           this.tempPoint = ''
           return false
         }
         return true
       },
       ...mapActions({
-        CHANGEPOINT: 'editPoint'
+        CHANGEPOINT: 'editPoint',
+        EDITUSER: 'editUser',
+        ADDVERSION: 'addVersion'
       })
     },
     watch: {
@@ -578,6 +598,9 @@
     computed: {
       point () {
         return this.$store.state.user.point
+      },
+      userinfo () {
+        return this.$store.state.user.user
       }
     }
   }

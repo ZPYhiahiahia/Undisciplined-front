@@ -36,18 +36,22 @@ const mutations = {
 const actions = {
   addHabit ({ commit }, newhabit) {
     commit('ADD_HABIT', newhabit)
+    commit('ADD_VERSION')
   },
   getHabit ({ commit }) {
     commit('GET_HABIT')
   },
   removeHabit ({commit}, id) {
     commit('REMOVE_HABIT', id)
+    commit('ADD_VERSION')
   },
   editHabit ({commit}, {id, upkey, upvalue}) {
     commit('EDIT_HABIT', {id, upkey, upvalue})
+    commit('ADD_VERSION')
   },
   editHabitPro ({commit}, {id, assigndata}) {
     commit('EDIT_HABIT_PRO', {id, assigndata})
+    commit('ADD_VERSION')
   }
 }
 

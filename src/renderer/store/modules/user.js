@@ -26,6 +26,11 @@ const mutations = {
   EDIT_NAME (state, name) {
     dbh.set('user.name', name)
     state.user = dbh.get('user')
+  },
+  ADD_VERSION (state) {
+    dbh.set('user.version', state.user.version + 1)
+    state.user = dbh.get('user')
+    state.point = dbh.get('user').point
   }
 }
 
@@ -36,18 +41,27 @@ const actions = {
     } else {
       commit('EDIT_USER', {key: 'user.' + key, value})
     }
+    commit('ADD_VERSION')
   },
   editPoint ({ commit }, newpoint) {
     commit('EDIT_POINT', newpoint)
+    commit('ADD_VERSION')
   },
   getUser ({commit}) {
+    /*
+    * todo 切换用户之后version可能出问题，解决办法是给每一个用户名存储一个version，或登录之后先从服务器拉一下（如果服务器有的话） 待定...
+    * */
     commit('GET_USER')
   },
   editToken ({commit}, token) {
     commit('EDIT_TOKEN', token)
+    commit('ADD_VERSION')
   },
   editName ({commit}, name) {
     commit('EDIT_NAME', name)
+  },
+  addVersion ({commit}) {
+    commit('ADD_VERSION')
   }
 }
 
