@@ -363,6 +363,15 @@
         dbh.insert('task', {listname: 'testMethodMade', listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
         this.items = dbh.get('task')
       },
+      getsource (i) {
+        let index = this.findmap(this.choosedListId, i)
+        if (index === null) {
+          return ''
+        } else {
+          console.log('getsource', index.listid, index.itemid)
+          return this.items[index.listid].listname
+        }
+      },
       dbAddList () {
         dbh.insert('task', {listname: this.newlistname, listicon: 'list', item: [], itemcnt: 0})
         this.items = dbh.get('task')
