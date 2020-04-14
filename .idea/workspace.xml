@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4e69246c-ddba-4fb4-aca5-5e5cf1097fc2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Settings.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Habits/AddDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Habits/AddDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/components/Home/Tasks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/Home/Tasks.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/datastore/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/datastore/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/habit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/habit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/sync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/store/modules/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +140,8 @@
       <workItem from="1586718888855" duration="110000" />
       <workItem from="1586765526722" duration="28320000" />
       <workItem from="1586811559484" duration="8129000" />
-      <workItem from="1586845796505" duration="3796000" />
+      <workItem from="1586845796505" duration="5241000" />
+      <workItem from="1586871558177" duration="6057000" />
     </task>
     <task id="LOCAL-00001" summary="随意更新">
       <created>1586811724549</created>
@@ -152,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586811724550</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="随意更新">
+      <created>1586849717193</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586849717194</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,30 +188,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586609519777" />
-    <state x="541" y="113" key="CommitChangelistDialog2" timestamp="1586811723628">
+    <state x="541" y="113" key="CommitChangelistDialog2" timestamp="1586849716575">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="541" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586811723628" />
+    <state x="541" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586849716575" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1584990086953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1584990086953" />
-    <state width="1899" height="217" key="GridCell.Tab.0.bottom" timestamp="1586811704989">
+    <state width="1900" height="217" key="GridCell.Tab.0.bottom" timestamp="1586882694488">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="217" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704989" />
-    <state width="1899" height="217" key="GridCell.Tab.0.center" timestamp="1586811704988">
+    <state width="1900" height="217" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586882694488" />
+    <state width="1900" height="217" key="GridCell.Tab.0.center" timestamp="1586882694488">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="217" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704988" />
-    <state width="1899" height="217" key="GridCell.Tab.0.left" timestamp="1586811704988">
+    <state width="1900" height="217" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586882694488" />
+    <state width="1900" height="217" key="GridCell.Tab.0.left" timestamp="1586882694488">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="217" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704988" />
-    <state width="1899" height="217" key="GridCell.Tab.0.right" timestamp="1586811704989">
+    <state width="1900" height="217" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586882694488" />
+    <state width="1900" height="217" key="GridCell.Tab.0.right" timestamp="1586882694488">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="217" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586811704989" />
+    <state width="1900" height="217" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586882694488" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1584884613024">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

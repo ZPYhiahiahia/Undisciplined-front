@@ -1,4 +1,7 @@
 import dbh from '../../datastore/dbHelper'
+import Identicon from 'identicon.js'
+import md5 from 'blueimp-md5'
+
 const state = {
   store: dbh.get('store')
 }
@@ -8,7 +11,10 @@ const mutations = {
     newgood.price = parseInt(newgood.price)
     newgood.amount = parseInt(newgood.amount)
     newgood.icon = ''
-    newgood.img = 'https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+    // todo 现在的这种简陋随即图片，找时间给他整治整治
+    const random = Math.floor((Math.random() * 10000000) + 1)
+    // newgood.img = `https://source.unsplash.com/collection/${random}/1600x900`
+    newgood.img = 'data:image/png;base64,' + new Identicon(md5(random || 0), 420).toString()
     newgood.buyamount = 0
     console.log('[EDIT_STORE] ')
     console.log(newgood)

@@ -47,7 +47,7 @@
             </v-col>
           </v-row>
           <v-divider></v-divider>
-          {{newhabit.frequency.rules}}
+<!--          {{newhabit.frequency.rules}}-->
         </v-form>
 
         <v-divider></v-divider>

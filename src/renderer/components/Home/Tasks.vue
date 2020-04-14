@@ -14,6 +14,7 @@
                   width="256"
                   class="mx-auto"
           >
+            <!--      todo 清单的打印，共享功能，结合electron实现      -->
             <v-navigation-drawer permanent>
               <v-list-item>
                 <v-list-item-content>
