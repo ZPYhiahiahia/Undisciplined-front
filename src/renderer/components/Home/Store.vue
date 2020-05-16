@@ -16,20 +16,21 @@
                 cols="4"
         >
           <v-card>
-            <v-img
-                    :src="good.img"
-                    class="white--text align-end"
-                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                    height="200px"
-            >
-              <v-card-title v-text="good.name"></v-card-title>
-              <v-card-text>
-                价格: {{good.price}}
-                <v-spacer></v-spacer>
-                剩余: {{good.amount - good.buyamount + '/' +  good.amount}}
-              </v-card-text>
-            </v-img>
-
+            <div style="background-color: black">
+              <v-img
+                      :src="good.img"
+                      class="white--text align-end"
+                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                      height="200px"
+              >
+                <v-card-title v-text="good.name"></v-card-title>
+                <v-card-text>
+                  价格: {{good.price}}
+                  <v-spacer></v-spacer>
+                  剩余: {{good.amount - good.buyamount + '/' +  good.amount}}
+                </v-card-text>
+              </v-img>
+            </div>
             <v-card-actions>
               <v-spacer></v-spacer>
 
@@ -106,6 +107,15 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+            <v-divider></v-divider>
+            <v-row>
+              <v-col>
+                <v-text-field
+                        label="图片url(默认为随机生成图片)" v-model="newGood.img"
+                        hint="可以为空"
+                ></v-text-field>
+              </v-col>
+            </v-row>
           </v-form>
 
           <v-divider></v-divider>
@@ -136,7 +146,8 @@
           name: '',
           price: '',
           amount: '',
-          description: ''
+          description: '',
+          img: ''
         },
         numberRules: [
           v => !!v || '不可以为空值',

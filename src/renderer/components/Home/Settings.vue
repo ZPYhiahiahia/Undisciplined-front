@@ -45,7 +45,8 @@
     </v-card>
 <!--    <span>todo : 1. 设置皮肤 2. 是否从网络随机获取图片用于商品 3. 商品是否使用简约模式</span>-->
 
-
+    <v-divider></v-divider>
+    <About></About>
 
 
 
@@ -128,8 +129,12 @@
   import {mapActions} from 'vuex'
   import dbh from '../../datastore/dbHelper'
   import qs from 'qs'
-  export default {
+  import About from './Settings/About'
+export default {
     name: 'Settings',
+    components: {
+      About
+    },
     data: () => ({
       dialog: {
         logindialog: false

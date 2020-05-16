@@ -12,7 +12,7 @@
     <add-dialog :dialog="dialog" :newhabit="newhabit" @addSubmit="addSubmit"></add-dialog>
     <delete-dialog :dialog="dialog" @removeHabit="removeHabit"></delete-dialog>
 <!--    <v-btn @click="testMethod">TEST BUTTON</v-btn>-->
-<!--    {{dialog}}-->
+<!--    {{_.last(habit[chooseHabitIndex].items)}}-->
   </div>
 </template>
 
@@ -45,24 +45,28 @@ export default {
     },
     methods: {
       testMethod () {
-        this.dialog.adddialog = !this.dialog.adddialog
+        let continueflag = this._.last(this.habit[this.chooseHabitIndex].items) ? new Date(this._.last(this.habit[this.chooseHabitIndex].items)).getTime() === new Date(this.now).getTime() - 24 * 60 * 60 * 1000 : false
+        console.log(continueflag)
       },
       doneTodayHabit () {
-        if (this._.indexOf(this.habit[this.chooseHabitIndex].items, this.now) !== -1) alert('今天已经完成了,明天再来吧!')
+        if (this._.indexOf(this.habit[this.chooseHabitIndex].items, this.now) !== -1) alert('今天已经完成了,明天再来吧!') // 如果今天已经完成
         else {
+          // 调整时间格式
           let tempitems = this._.concat(this.habit[this.chooseHabitIndex].items, this.now)
           let temphabit = this.habit[this.chooseHabitIndex]
+          let continueflag = this._.last(this.habit[this.chooseHabitIndex].items) ? new Date(this._.last(this.habit[this.chooseHabitIndex].items)).getTime() === new Date(this.now).getTime() - 24 * 60 * 60 * 1000 : false
           let tempupdateitem = {
+            // 计算连续完成天数
             allcnt: temphabit.allcnt + 1,
-            continuouscnt: temphabit.continuouscnt + 1,
+            continuouscnt: continueflag ? temphabit.continuouscnt + 1 : 1,
             maxcontinuouscnt: Math.max(temphabit.continuouscnt + 1, temphabit.maxcontinuouscnt),
             items: tempitems
           }
           this.UPDATEHABITPRO({
             id: this.habit[this.chooseHabitIndex].id,
             assigndata: tempupdateitem
-          })
-          this.EDITPOINT(this.point + this.habit[this.chooseHabitIndex].point)
+          }) // 使用VUEX中的METHOD
+          this.EDITPOINT(this.point + this.habit[this.chooseHabitIndex].point) // 增加对应的积分
           // this.CHANGEDONE()
         }
       },
@@ -90,7 +94,7 @@ export default {
       },
       IndexClick (index) {
         this.chooseHabitIndex = index
-        console.log(this.chooseHabitIndex)
+        // console.log(this.chooseHabitIndex)
       },
       ...mapActions({
         CHANGEDONE: 'getHabit',

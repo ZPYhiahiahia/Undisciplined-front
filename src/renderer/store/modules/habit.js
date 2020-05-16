@@ -11,6 +11,7 @@ const mutations = {
     newhabit.maxcontinuouscnt = 0
     newhabit.items = []
     newhabit.weekpoint = 0
+    newhabit.comments = []
     newhabit.point = parseInt(newhabit.point)
     dbh.insert('habit', newhabit)
     state.habit = dbh.get('habit')
@@ -29,6 +30,12 @@ const mutations = {
   },
   EDIT_HABIT_PRO (state, {id, assigndata}) {
     dbh.updateById1('habit', id, assigndata)
+    state.habit = dbh.get('habit')
+  },
+  ADD_COMMENT (state, {id, assigndata}) {
+    // dbh.updateById1('habit', id, assigndata)
+    console.log(id)
+    console.log(assigndata)
     state.habit = dbh.get('habit')
   }
 }
@@ -51,6 +58,10 @@ const actions = {
   },
   editHabitPro ({commit}, {id, assigndata}) {
     commit('EDIT_HABIT_PRO', {id, assigndata})
+    commit('ADD_VERSION')
+  },
+  addComment ({commit}, {id, assigndata}) {
+    commit('ADD_COMMENT', {id, assigndata})
     commit('ADD_VERSION')
   }
 }

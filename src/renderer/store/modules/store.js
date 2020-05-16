@@ -14,7 +14,8 @@ const mutations = {
     // todo 现在的这种简陋随即图片，找时间给他整治整治
     const random = Math.floor((Math.random() * 10000000) + 1)
     // newgood.img = `https://source.unsplash.com/collection/${random}/1600x900`
-    newgood.img = 'data:image/png;base64,' + new Identicon(md5(random || 0), 420).toString()
+    console.log(newgood)
+    if (newgood.img === '') { newgood.img = 'data:image/png;base64,' + new Identicon(md5(random || 0), 420).toString() }
     newgood.buyamount = 0
     console.log('[EDIT_STORE] ')
     console.log(newgood)

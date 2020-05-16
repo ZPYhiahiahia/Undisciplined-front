@@ -24,7 +24,7 @@ if (!db.has('task').value()) {
   db.set('task', []).write()
   db.get('task').insert({
     listname: '我的一天',
-    listicon: 'wb-sunny',
+    listicon: 'wb_sunny',
     itemcnt: 1,
     item: [
     ]
@@ -75,7 +75,13 @@ if (!db.has('habit').value()) {
     },
     items: [],
     point: 0,
-    weekpoint: 0
+    weekpoint: 0,
+    comments: [
+      {
+        addtime: new Date(+new Date() + 8 * 3600 * 1000).toISOString().substr(0, 10),
+        text: '在这里记录你的感想'
+      }
+    ]
   }).write()
 }
 
@@ -90,6 +96,10 @@ if (!db.has('store').value()) {
     amount: 100,
     buyamount: 0
   }).write()
+}
+
+if (!db.has('taskmap').value()) {
+  db.set('taskmap', []).write()
 }
 
 export default db

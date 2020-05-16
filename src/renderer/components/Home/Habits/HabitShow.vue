@@ -59,9 +59,29 @@
         <v-divider></v-divider>
         <v-row>
           <v-col>
-            <v-card>
-              感言区 : 还没做
-            </v-card>
+            <v-list>
+              <v-list-item v-for="(item, i) in habit[chooseHabitIndex].comments">
+                <v-card style="width: 100%">
+                  <span>{{item.text}}</span>
+                  <v-spacer></v-spacer>
+                  <span class="grey--text">{{item.addtime}}</span>
+                </v-card>
+                <v-divider></v-divider>
+              </v-list-item>
+              <v-divider></v-divider>
+              <v-list-item>
+                <v-text-field
+                        solo
+                        full-width
+                        dense
+                        label="添加新的感想"
+                        clearable
+                        v-model="newcomment.text"
+                        @keydown.enter="submitComment"
+                ></v-text-field>
+              </v-list-item>
+            </v-list>
+
           </v-col>
         </v-row>
 
@@ -112,6 +132,7 @@
 
 <script>
   import Calendar from 'vue-calendar-component'
+  import {mapActions} from 'vuex'
   export default {
     name: 'HabitShow',
     props: {
@@ -121,13 +142,24 @@
     },
     data () {
       return {
-        fab: false
+        fab: false,
+        newcomment: {
+          text: '',
+          addtime: new Date(+new Date() + 8 * 3600 * 1000).toISOString().substr(0, 10)
+        }
       }
     },
     methods: {
       doneTodayHabit () {
         this.$emit('doneTodayHabit')
-      }
+      },
+      submitComment () {
+        console.log(this.habit[this.chooseHabitIndex].id)
+        this.newcomment.text = ''
+      },
+      ...mapActions({
+        ADDCOMMENT: 'addComment'
+      })
     },
     computed: {
       now () {

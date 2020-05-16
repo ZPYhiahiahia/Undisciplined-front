@@ -116,11 +116,30 @@
                               :color="task.isDone && 'grey' || 'primary'"
                       >
                         <template v-slot:label>
-                          <div
-                                  :class="task.isDone && 'grey--text' || 'primary--text'"
-                                  class="ml-4"
-                                  v-text="task.name"
-                          ></div>
+                          <v-tooltip bottom>
+                            <template v-slot:activator="{ on }">
+                              <div v-on="on">
+                                <div
+                                        :class="task.isDone && 'grey--text' || 'primary--text'"
+                                        class="ml-4"
+                                        v-text="task.name"
+                                ></div>
+                                <div
+                                        :class="task.isDone && 'grey--text' || 'primary--text'"
+                                        class="ml-4"
+                                        v-if="getsource(i) !== ''"
+                                >
+                                  <v-chip x-small dark disabled>{{getsource(i)}}</v-chip>
+                                </div>
+                              </div>
+                            </template>
+                            <span v-if="task.deadtime !== ''">
+                              <span v-if="new Date(task.deadtime) > new Date()">截止日期：{{task.deadtime}}</span>
+                              <span v-else class="red--text">任务已过期</span>
+                            </span>
+                            <span v-if="task.deadtime === ''">未设置截止日期</span>
+                          </v-tooltip>
+
                         </template>
                       </v-checkbox>
                     </v-list-item-action>
@@ -202,7 +221,7 @@
       <v-contextmenu-item v-show="choosedListId !== 0 && !checkmyday()"  @click="deletetaskfrommyday">从我的一天中删除</v-contextmenu-item>
       <v-divider v-show = " choosedListId !== 0"></v-divider>
       <!--      todo edititem 没有做-->
-      <v-contextmenu-item @click="edititem">编辑任务</v-contextmenu-item>
+      <v-contextmenu-item @click="editshow">编辑任务</v-contextmenu-item>
       <v-divider></v-divider>
       <v-contextmenu-item style="color: red" @click="removeitem">删除任务</v-contextmenu-item>
     </v-contextmenu>
@@ -301,11 +320,32 @@
         </v-text-field>
       </v-card>
     </v-dialog>
+<!--    edit dialog-->
+    <v-dialog
+            v-model="isEditShow"
+            width="300"
+            overlay-opacity = 0
+            transition="slide-y-reverse-transition"
+    >
+      <v-card>
+        <v-text-field
+                v-model="tempTask"
+                label="编辑任务"
+                filled
+                full-width
+                solo rounded height="80%"
 
+                @keydown.enter="edititem()"
+                autofocus
+        >
+
+          </v-text-field>
+          </v-card>
+          </v-dialog>
 <!--    <v-btn @click="testMethod">test button</v-btn>-->
 <!--&lt;!&ndash;    <p>{{this.$store.state.user}}</p>&ndash;&gt;-->
 <!--    <p style="color: red">{{point}}</p>-->
-<!--    <p>{{map}}</p>-->
+<!--   <p>{{items}}</p>-->
   </div>
 
 
@@ -329,6 +369,8 @@
         isDateShow: false,
         isPointShow: false,
         tempPoint: '',
+        isEditShow: false,
+        tempTask: '',
         dialog: {
           isShow: false,
           title: '',
@@ -349,7 +391,7 @@
         newitem: {
           name: '',
           isDone: false,
-          deadtime: this.curDate,
+          deadtime: this.curDate ? this.curDate : '',
           point: 0,
           id: -1
         },
@@ -360,17 +402,37 @@
     },
     methods: {
       testMethod () {
-        dbh.insert('task', {listname: 'testMethodMade', listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
-        this.items = dbh.get('task')
+        const datestr = '2020-04-26'
+        const datestr1 = '2020-04-27'
+        const datedate = new Date(datestr)
+        const datedate1 = new Date(datestr1)
+        console.log(datedate < datedate1)
       },
       getsource (i) {
         let index = this.findmap(this.choosedListId, i)
         if (index === null) {
           return ''
         } else {
-          console.log('getsource', index.listid, index.itemid)
+          // 打印调试
+          // console.log('getsource', index.listid, index.itemid)
           return this.items[index.listid].listname
         }
+      },
+      editshow () {
+        // todo 截止日期没有显示在界面上
+        this.isEditShow = !this.isEditShow
+        this.tempTask = this.items[this.choosedListId].item[this.contextItemId].name
+      },
+      edititem () {
+        if (this.tempTask === null || this.tempTask === '') return
+        this.items[this.choosedListId].item[this.contextItemId].name = this.tempTask
+        let index = this.findmap(this.choosedListId, this.contextItemId)
+        if (index !== null) {
+          this.items[index.listid].item[index.itemid].name = this.tempTask
+        }
+        this.tempTask = ''
+        this.isEditShow = false
+        this.changeDone()
       },
       dbAddList () {
         dbh.insert('task', {listname: this.newlistname, listicon: 'list', item: [], itemcnt: 0})
@@ -379,6 +441,8 @@
       changeDone () {
         // this.$db.set('task', this.items).write()
         dbh.set('task', this.items)
+        // 保存taskmap
+        dbh.set('taskmap', this.map)
         // console.log(this.userinfo)
         this.updateItems()
         let value = this.userinfo.version + 1
@@ -391,7 +455,6 @@
         }
         this.map.push({from: {listid: listid, itemid: itemid}, to: {listid: 0, itemid: this.items[0].item.length - 1}})
         this.changeDone()
-        // this.map.push({from: {listid: 0, itemid: this.items[0].item.length - 1}, to: {listid: listid, itemid: itemid}})
       },
       // 寻找索引对应的内容，找不到返回null
       findmap (listid, itemid) {
@@ -442,10 +505,6 @@
           this.dialog.isShow = false
           return
         }
-        // 换一句插入语句
-        // this.items.push({listname: this.newlistname, listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
-        // console.log(this.items)
-        // // dbh.insert('task', {listname: this.newlistname, listicon: 'mdi-view-dashboard', item: [], itemcnt: 0})
         this.dbAddList()
         this.newlistname = ''
         this.dialog.isShow = false
@@ -479,14 +538,14 @@
         this.changeDone()
       },
       addtask () {
+        // 任务合法性校验
         if (this.newitem.name === '') return
         this.items[this.choosedListId].item.push(this.newitem)
         this.items[this.choosedListId].itemcnt++
-        this.changeDone()
+        this.changeDone() // changeDone() 是一个包含提交数据库和重新渲染页面功能的方法
         this.newitem.name = ''
         this.newitem.id = this.items[this.choosedListId].itemcnt
         this.newitem.point = 0
-        // console.log('tempPoint', this.tempPoint)
       },
       deletetaskfrommyday () {
         let index = this.findmap(this.choosedListId, this.contextItemId)
@@ -496,19 +555,20 @@
         this.deletemap(index)
       },
       addtaskto (id) {
-        let index = this.findmap(this.choosedListId, this.contextItemId)
+        let index = this.findmap(this.choosedListId, this.contextItemId) // 寻找对应的映射
         if (index !== null) {
           return
         }
         this.items[id].item.push(this.items[this.choosedListId].item[this.contextItemId])
         if (this.choosedListId === 1) {
+          // 收集箱
           this.items[this.choosedListId].item.splice(this.contextItemId, 1)
         }
         if (this.choosedListId >= 2) {
+          // 其他清单
           this.addmap(this.choosedListId, this.contextItemId)
-          console.log(this.map)
         }
-        this.changeDone(0)
+        this.changeDone() // 提交数据库并重新渲染
       },
       removeitem () {
         this.items[this.choosedListId].item.splice(this.contextItemId, 1)
@@ -551,17 +611,16 @@
         }
         this.changeDone()
       },
-      edititem () {
-        // todo 截止日期没有显示在界面上
-      },
+      // todo 截止日期没有显示在界面上
       changePoint (i) {
         var anspoint = this.items[this.choosedListId].item[i].isDone ? -parseInt(this.items[this.choosedListId].item[i].point) : parseInt(this.items[this.choosedListId].item[i].point)
         this.CHANGEPOINT(this.point + anspoint)
         // 操作数据库设置任务完成情况 (可能会存在风险,毕竟不是直接绑定在checkbox上的)
+        // 因为capture，
         this.items[this.choosedListId].item[i].isDone = !this.items[this.choosedListId].item[i].isDone
         this.changeDone()
-        this.items[this.choosedListId].item[i].isDone = !this.items[this.choosedListId].item[i].isDone
         this.checkmap(i, 0)
+        this.items[this.choosedListId].item[i].isDone = !this.items[this.choosedListId].item[i].isDone
       },
       checkmyday () {
         let index = this.findmap(this.choosedListId, this.contextItemId)
@@ -573,6 +632,7 @@
       },
       updateItems () {
         this.items = dbh.get('task')
+        this.map = dbh.get('taskmap')
       },
       getcontextmenu () {
         if (this.choosedListId === 1) {
