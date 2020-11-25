@@ -1708,6 +1708,11 @@ bluebird@^3.1.1, bluebird@^3.5.0, bluebird@^3.5.1, bluebird@^3.5.5:
   resolved "https://registry.npm.taobao.org/bluebird/download/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha1-nyKcFb4nJFT/qXOs4NvueaGww28=
 
+blueimp-md5@^2.13.0:
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/blueimp-md5/-/blueimp-md5-2.18.0.tgz#1152be1335f0c6b3911ed9e36db54f3e6ac52935"
+  integrity sha512-vE52okJvzsVWhcgUHOv+69OG3Mdg151xyn41aVQN/5W5S+S43qZhxECtYLAEHMSFWX6Mv5IZrzj3T5+JqXfj5Q==
+
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
   resolved "https://registry.npm.taobao.org/bn.js/download/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
@@ -4586,9 +4591,9 @@ header-case@^1.0.0:
     upper-case "^1.1.3"
 
 highlight.js@^9.3.0:
-  version "9.18.1"
-  resolved "https://registry.npm.taobao.org/highlight.js/download/highlight.js-9.18.1.tgz?cache=0&sync_timestamp=1583833558650&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhighlight.js%2Fdownload%2Fhighlight.js-9.18.1.tgz#ed21aa001fe6252bb10a3d76d47573c6539fe13c"
-  integrity sha1-7SGqAB/mJSuxCj121HVzxlOf4Tw=
+  version "9.18.5"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.5.tgz#d18a359867f378c138d6819edfc2a8acd5f29825"
+  integrity sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -4793,6 +4798,11 @@ icss-utils@^2.1.0:
   integrity sha1-g/Cg7DeL8yRheLbCrZE28TWxyWI=
   dependencies:
     postcss "^6.0.1"
+
+identicon.js@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/identicon.js/-/identicon.js-2.3.3.tgz#c505b8d60ecc6ea13bbd991a33964c44c1ad60a1"
+  integrity sha512-/qgOkXKZ7YbeCYbawJ9uQQ3XJ3uBg9VDpvHjabCAPp6aRMhjLaFAxG90+1TxzrhKaj6AYpVGrx6UXQfQA41UEA==
 
 ieee754@^1.1.4:
   version "1.1.13"
@@ -7465,6 +7475,11 @@ qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.7.0.tgz?cache=0&sync_timestamp=1585168773645&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha1-QdwaAV49WB8WIXdr4xr7KHapsbw=
+
+qs@^6.9.3:
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
+  integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
 
 qs@~6.5.2:
   version "6.5.2"
