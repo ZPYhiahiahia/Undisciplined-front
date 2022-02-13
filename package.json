@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@mdi/font": "^5.0.45",
-    "ajv": "^6.5.0",
+    "ajv": "^6.12.3",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
